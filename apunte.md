@@ -1,6 +1,8 @@
 # Apunte del curso _Teoría de Grupos para Físicos_
-Este apunte está basado en el libro _Group Theory in a Nutshell for Physicists_ de _A. Zee_
 _por Tomás Rojas_
+
+Este apunte está basado en el libro _Group Theory in a Nutshell for Physicists_ de _A. Zee_
+
 
 ## Simetría y Grupos
 
