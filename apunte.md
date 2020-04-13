@@ -1,5 +1,6 @@
 # Apunte del curso _Teoría de Grupos para Físicos_
 Este apunte está basado en el libro _Group Theory in a Nutshell for Physicists_ de _A. Zee_
+_por Tomás Rojas_
 
 ## Simetría y Grupos
 
@@ -178,3 +179,77 @@ Ahora consideremos $Z_2\bigotimes Z_3$ formado por los elementos $(n,m)$, que es
 Por lo tanto, $Z_2\bigotimes Z_3$ y $Z_6$ son isomorfos; son literalmente el mismo grupo. Notar que este fenómeno de posible isomorfismo etre $Z_p\bigotimes Z_q$ y $Z_{pq}$, no requiere que $p$ y $q$ sean primos, solo que sean primos relativos, como lo es por ejemplo $Z_4 \bigotimes Z_9$.
 
 Otro ejemplo de isomorfismo, el grupo $SO(2)$ y $U(1)$ introducidos anteriormente, son isomorfos. El mapeo $f:SO(2)\to U(1)$ está definido simplemente como $f(R(\phi))=e^{i\phi}$.
+
+
+## Grupos finitos
+
+### Grupos de permutación y teorema de Cayley
+
+El grupo de permutación $S_n$ y su subrupo natural $A_n$ son como los grupos estrella de la teoría de grupos ya que son buenos ejemplos. Todos sabemos como funcionan las permutaciones.
+
+Un teorema debido a Cayley afirma que un grupo finito $G$ con $n$ elementos es isomorfo (es to es, idéntico) a un subgrupo de $S_n$.
+
+La lista de $n$ elementos de $G$ que es $\{g_1,g_2,...,g_n\}$ en el odren perteneciente a la fila en la tabla de multimplicación que le corresponde al elemento identidd. Así en la fila del elemento $g_i$ tenemos, en orden $\{g_ig_1,g_ig_2,...,g_ig_n\}$. Esto corresponde a una permutación de $\{g_1,g_2,...,g_n\}$. Así podemos asociar un elemento de $S_n$ con $g_i$. Esto mapea $G$ en un subrupo de $S$. Notese que el teorema de Lagrange se satisface.
+
+Para grandes $n$, vemos que $G$ es un pequeño subrupo de $S_n$, que tiene $n!$ elementos. En contraste, para $n$ pequeño, la situación es diferente, por ejemplo, el grupo $Z_2$ es el mismo que $S_2$.
+
+
+### Ciclos y tansposiciónes
+
+Como es común en matemáticas y en física, una buena notación es la mitad del trabajo. Pa ser específico, considere $S_5$. Un elemento típico sería $g=\begin{pmatrix}1&2&3&4&5\\4&1&5&2&3\end{pmatrix}$. Esto denota una permutación que toma $1\to4,2\to1,3\to5,4\to2,5\to3$ esto es, una permutación que permuta ciclicamente $1\to4\to2\to1$ e intercambia $3\to5\to3$. Una notación más compacta puede ser escribir $g$ como $g=(142)(35)$. En nuestra convención, $(142)$ significa $1\to4\to2\to1$, y $(35)$ significa $3\to5\to3$.
+
+La permutación $(a_1a_2...a_k)$ es conocido como un ciclo de largo $k$ y permuta ciclicamente $a_1\to a_2\to a_3\to ... \to a_k \to a_1$. Un ciclo de largo 2 se llama transposición, o más informalmente, un intercambio.
+
+Cualquier permutacion $P$ puede escribirse como un producto de ciclos de distintos largos incluyendo ciclos de largo 1 con ninguno de los ciclos conteniendo elementos en común.
+
+### Reglas para multiplicar Permutaciones
+
+
+_Teorema:_ Cualquier permutacion puede ser escrita como un producto de dos ciclos, esto es, intercambios o transposiciones.
+
+Esto solo expresa la intuición de que una permutación puede ser hecha en pasos, intercambiando dos objetos en cada momento. En algún sentido, los intercambios son "átomos" con los que las permutaciones son constuidas.
+
+En nuestro ejemplo, $g=(142)(35)$ es un producto de un ciclo de largo $3$ con uno de largo $2$.
+
+Esto no contradice el teorema. Podemos escribir:
+
+$$
+(14)(42)=
+\begin{pmatrix}
+1&2&4\\
+4&2&1
+\end{pmatrix}
+\begin{pmatrix}
+1&2&4\\
+1&2&4
+\end{pmatrix}
+=
+\begin{pmatrix}
+1&2&4\\
+1&4&2\\
+4&1&2
+\end{pmatrix}
+=
+(124)
+$$
+
+En la primera igualdad, solo estamos tomando una notación más explícita, por ejemplo $(14)=\begin{pmatrix}1&2&4\\4&2&1\end{pmatrix}$. En la segunda igualdad, inventamos una notación nueva de 3 filas. La última igualdad es una manera de representar el efecto neto de las dos operaciones.
+
+Así, $g=(14)(42)(35)$ de acuerdo al teorema. Notar que, cuando se resuelve una permutación en siclos y escribe $g=(142)(35)$, el ciclo de a $3$ $(142)$ y el ciclo de a $2$ $(35)$ no tienen, por construcción, ningún elemento en común. Pero el teorema no tiene ninguna restricción de ese tipo. En nuestro ejemplo, $4$ aparece en dos ciclos separados de a dos.
+
+Ahora podemos desarrollar reglas para multiplicar ciclos de a 2:
+
+  1. Si los 2-cilcos no tienen un "número" en común, por ejemplo $(12)$ y $(34)$, en ese caso, conmutan y no hay mucho más que agregar.
+  2. $(12)(23)=(123)$. Como $(32)=(23)$, podemos adoptar la convensión, cuando multiplicamos dos ciclos cuyo elemento final de uno e inicial de otro, son el mismo.
+  3. También hay que mencionar que $(12)(21)=I$.
+  4. $(12)(23)(34)=(12)(234)=\begin{pmatrix}1&2&3&4\\1&3&4&2\\2&3&4&1\end{pmatrix}=(1234)$
+  5. (123)(345)=(12)(23)(34)(45)=(12)(234)(45)=(12345)
+
+Y así.
+
+
+Como cualquier permutación se cuede componer de ciclos de a dos, estas reglas nos permiten multiplicar permutaciones.
+
+Las permutaciones pueden ser pares o impares. Los ciclos de a dos son impar. Veamos que el ciclo de a dos $(12)$ puede ser representado por una matriz $\begin{pmatrix}0&1\\1&0\end{pmatrix}$, que tiene determinante $=-1$. El ciclo de a 3 es par, ya que es el producto de dos ciclos de a 2, también podemos representarlo por la matriz $\begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix}$, que tiene determinante $=+1$. Así una permutación es par o impar si se descompone en un producto con un número de intercambios (o ciclos de a dos, desde ahora 2-ciclos) par o impar respectivamente.
+
+### Raíz cuadrada de la identidad
