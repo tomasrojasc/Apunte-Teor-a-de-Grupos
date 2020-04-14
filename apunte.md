@@ -255,3 +255,107 @@ Como cualquier permutación se cuede componer de ciclos de a dos, estas reglas n
 Las permutaciones pueden ser pares o impares. Los ciclos de a dos son impar. Veamos que el ciclo de a dos $(12)$ puede ser representado por una matriz $\begin{pmatrix}0&1\\1&0\end{pmatrix}$, que tiene determinante $=-1$. El ciclo de a 3 es par, ya que es el producto de dos ciclos de a 2, también podemos representarlo por la matriz $\begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix}$, que tiene determinante $=+1$. Así una permutación es par o impar si se descompone en un producto con un número de intercambios (o ciclos de a dos, desde ahora 2-ciclos) par o impar respectivamente.
 
 ### Raíz cuadrada de la identidad
+
+_Teorema:_ Sea $G$ un grupo de orden par. Existe al menos un elemento de $G$, distinto a la identidad $I$, que también da la identidad al elevarse al cuadrado $g^2=I$.
+
+### Equivalencia de clases
+
+Dado un grupo $G$, sus distintos elementos son distintos entre sí, pero hay una manera en que algunos elementos de un grupo son escencialmente lo mismo. La equivalencia de clases hace de esto algo más formal.
+
+Antes de dar una definición, vamos a dar una intuición de qué significa ser "escencialmente lo mismo". Considere $SO(3)$. Tenemos la intuición que una rotación en $17º$ y una en $71º$ no están ni cerca de ser la misma cosa. Pero en contraste, una rotación en $17º$ en el eje $x$ y una rotación en $17º$ en el eje $z$ son escencialmente lo mismo. Podríamos simplemente llamar eje $x$ al eje $z$.
+
+Otro ejemplo. Considere $S_3$. Tenemos la noción que los elementos $(123)$ y $(132)$ son escencialmente lo mismo, de nuevo, solo cambiamos los nombres de los elementos. Podemos traducir esas palabras a ecuaciones de la siguiente manera: $(23)^{-1}(123)(23)=(32)(12)(23)(32)=(32)(21)=(321)=(123)$.
+
+En un grupo $G$, dos elementos $g$ y $g'$ se llaman equivalentes $(g\sim g')$ si existe otro elemento $f$ de tal manera que:
+
+$$
+g'=f^{-1}gf
+$$
+
+La transformación $g\to g'$ es como una transformación de similaridad en álgebra lineal.
+
+Como la equivalencia es transitiva (amigo de amigo es amigo), esto es $g\sim g'$ y $g'\sim g'' \implies g\sim g''$, podemos juntar elementos que son equivalentes en clases de equivalencias.. El número de elementos en una clase de equivalencia $c$, denotado por $n_c$, juega un rol crucial en la teoría de representación discutida anteriormente.
+
+Considere $S_4$ con $4!=24$ elementos. Las permutaciones pares forman un subgrupo $A_4$, con $4!/2=12$ elementos. Dados los precedentes, las permutaciones pares caen en cuatro clases de equivalencia:
+
+$$
+\{I\}, \quad \{(12)(34),(13)(24),(14)(23)\},
+$$
+$$
+\{(123),(142),(134),(243)\},\quad \{(132),(124),(143),(234)\}
+$$
+
+Por ejemplo $((12)(34))^{-1}(123)(12)(34)=(43)(21)(12)(23)(12)(34)=(43)(234)(12)=(43)(34)(42)(21)=(421)=(142)$, cuando usamos las variaas reglas de multiplicación 2-ciclos repetidamente. Como fue explicado anteriormente explicado, también podemos obtener el mismo resultado de manera más rápida solo haciendo los intercambios $1\longleftrightarrow 2$ y $3\longleftrightarrow 4$: $(123)\to(213)\to(214)=(142)$.
+
+El grupo $S_4$ se obtiene adjuntando las 12 permutaciones impares con $A_4$. Note que $S_4$, $(124)$ y $(134)$ son equivalentes, pero dentro de $A_4$, no lo son: los elementos $(23)$ está en $S_4$ pero no en $A_4$. Este ejemplo muestra que, mientras que permutaciones en la misma clase equivalente necesariamente tienen la misma estructura de ciclo, los elementos con la misma estructura de ciclo no son necesariamente equivalentes.
+
+#### Tres datos sobre las clases
+   1. En el mundo abeliano, todos estñan en una clase por sí mismos o sí mismas.
+   2. En cualquier grupo, la identidad está siempre en su propia clase privada.
+   3. Considere la clase consistente de $\{g_1,...,g_{n_c}\}$. Además considere las inversas de estos $n_c$ elementos $\{g_1^{-1},...,g_{n_c}^{-1}\}$, también es de una clase, qaue denotamos $\bar{c}$.
+
+
+
+### Estructura cíclica y partición de los enteros
+
+Como se dijo anteriormente, cualquier permutación $S_n$ puede ser escrita como el producto de $n_j$ $j-\text{ciclos}$ con $\sum_j jn_j=n$. Por ejemplo, una permutación con la estructura de ciclo escrita esquemáticamente como $(xxxxx)(xxxxx)(xxxx)(xx)(xx)(xx)(x)(x)(x)(x)$ tiene $n_5=2, n_4=1, n_3=0, n_2=3, n_1=4$ dando un total de $n=24$,  y es un elemento de $S_{24}$.
+
+### E grupo dihedral $D_n$
+
+Hay muchos grupos finitos a parte de las permutaciones. Ya se mencionaron las cantidades de transformaciones que dejan el polígono de $n$ lados invariante, formando un grupo conocido como el grupo dihedral $D_n$.
+
+El grupo es generado por la rotación $R$ en $2\pi/n$ y la reflexión $r$ con respecto a una mediana. Para $n$ impar, una mediana es una línea recta que va de un vértice al punto medio del lado opuesto. Para un $n$ par, hay dos tipos de mediana: una mediana que es una línea recta a traves del centro del polígono que va de un vértice al otro, o bien desde punto medio a punto medio. Siempre hay $n$ medianas, como muestra la figura.
+
+![](img/img2.png)
+
+
+$R^n=I$ y $r^2=I$ de hecho, $rRr=R^{-1}$. Así $D_n$ tiene $2n$ elementos $\{I,R,R^2,...,R^{n-1}, r, Rr, R^2r,...,R^{n-1}r\}$. Tenemos que la representación es:
+
+$$
+D_n=\left<R,r|R^n=I,r^2=I,Rr=rR^{-1}\right>
+$$
+
+### El grupo quaternion $Q$
+
+Hamilton generalizó la unidad imaginaria $i$ añadiendo dos nuevas unidades, $j$ y $k$ satisfaciendo las siguientes reglas de multiplicación.
+
+$$
+i^2=j^2=k^2=-1 \quad \text{y} \quad ij=-ji=k,\quad jk=-kj=i,\quad ki=-ik=j
+$$
+
+
+El grupo quaternion $Q$ consiste de ocho elementos: $1,-1,i,-i,j,-j,k,-k$.
+
+
+
+
+### Grupos Coxeter
+
+
+Un grupo Coxeter esta representado por
+
+$$
+\left<a_1,a_2,...,a_k|(a_i)^2=I,(a_ia_j)^{n_{ij}}=I,n_{ij}\geq2,\quad \text{con}\quad i,j=1,2,...,k\right>
+$$
+
+En otras palabras, cada generador da la identidad al elevarse al cuadrado, y para cada par de generadores, existe un entero $n_{ij}\geq 2$ de tal manera que $(a_ia_j)^{n_{ij}}=I$. Los $a_i$ corresponden a reflexiones.
+
+### Subgrupos invariantes
+
+Sabemos lo que es un subrupo, pero hablemos de un tipo de subgrupos especial, conocidos como los subgrupos invariantes. Sea $H$, consistente de los elementos $\{h_1,h_2,...\}$, un subgrupo de $G$. Tome cualquier elemento $g\in G$ pero no en $H$. Luego, el conjunto de elementos $\{g_{-1},h_1g,g^{-1}h_2g,...\}$ forma un subgrupo, que vamos a llamar $g^{-1}Hg$. En general, los grupos $H$ y $g^{-1}Hg$ son distintos.
+
+Pero si $H = g^{-1}Hg \quad\forall\quad g\in G$ luego $H$ es llamado un _subgrupo invariante_. En otras palabras, $H$ es invariante si las dos listas $\{h_1,h_2,...\}$ y $\{g^{-1}h_1g,g^{-1}h_2g,...\}$ son los mismos para cualquier $g$. En otras palabras, transformaciones de similaridad generadas por los elementos del grupo $G$ dejan $H$ invariante. eEstos grupos también se conocen como grupos normales.
+
+Que $G$ contenga el subgrupo invariante $H$ se escribe $G\triangleright H$.
+
+
+### Subrupos derivados
+
+Dado un grupo $G$, tome dos elementos $a,b$ y calcule
+
+$$
+\left<a,b\right>\equiv a^{-1}b^{-1}ab=(ba)^{-1}(ab)
+$$
+
+
+Primero, note que $\left<a,a\right>=I$ y $\left<a,b\right>^{-1}=\left<b,a\right>$. Denote por $\{x_1,x_2,...\}$ los objetos $\left<a,b\right>$ y $a,b$ son todos los elementos del grupo.
